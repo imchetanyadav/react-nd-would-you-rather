@@ -12,9 +12,10 @@ class Dashboard extends Component {
     handleChange = (event, value) => {
         this.setState({ value })
     }
+
     render () {
-        console.log(this.props)
         const { value } = this.state;
+
         return (
             <div>
                 Dashboard
@@ -26,25 +27,39 @@ class Dashboard extends Component {
                 </AppBar>
                 {value === 0 && 
                     <div>
-                        {this.props.questionIds.map(id => (
+                        {this.props.unansweredQuestionIds.map(id => (
                             <li key={id}>
-                                <div>Question Id: {id}</div>
+                                {id}
                             </li>
                         ))}
                     </div>
                 }
                 {value === 1 && 
-                    <div>Item Two</div>
+                    <div>
+                        {this.props.answeredQuestionIds.map(id => (
+                            <li key={id}>
+                                {id}
+                            </li>
+                        ))}
+                    </div>
                 }
             </div>
         )
     }
 }
 
-function mapStateToProps ({ questions }) {
+function mapStateToProps ({ questions, authedUser }) {
     return {
-        questionIds: Object.keys(questions)
-            .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+        answeredQuestionIds: Object.keys(questions)
+            .filter(q => 
+                questions[q].optionOne.votes.some(v => v===authedUser) ||
+                questions[q].optionTwo.votes.some(v => v===authedUser) 
+            ),
+        unansweredQuestionIds: Object.keys(questions)
+        .filter(q => 
+            !(questions[q].optionOne.votes.some(v => v===authedUser) ||
+            questions[q].optionTwo.votes.some(v => v===authedUser)) 
+        )
     }
 }
 
