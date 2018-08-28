@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Question from './Question';
 
 class Dashboard extends Component {
     state = {
@@ -29,7 +30,7 @@ class Dashboard extends Component {
                     <div>
                         {this.props.unansweredQuestionIds.map(id => (
                             <li key={id}>
-                                {id}
+                                <Question id={id} />
                             </li>
                         ))}
                     </div>
@@ -38,7 +39,7 @@ class Dashboard extends Component {
                     <div>
                         {this.props.answeredQuestionIds.map(id => (
                             <li key={id}>
-                                {id}
+                                <Question id={id} />
                             </li>
                         ))}
                     </div>
@@ -56,10 +57,10 @@ function mapStateToProps ({ questions, authedUser }) {
                 questions[q].optionTwo.votes.some(v => v===authedUser) 
             ),
         unansweredQuestionIds: Object.keys(questions)
-        .filter(q => 
-            !(questions[q].optionOne.votes.some(v => v===authedUser) ||
-            questions[q].optionTwo.votes.some(v => v===authedUser)) 
-        )
+            .filter(q => 
+                !(questions[q].optionOne.votes.some(v => v===authedUser) ||
+                questions[q].optionTwo.votes.some(v => v===authedUser)) 
+            )
     }
 }
 
