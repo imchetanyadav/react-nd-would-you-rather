@@ -4,10 +4,9 @@ import Question from './Question'
 
 class QuestionDetails extends Component {
     render() {
-        const { id } = this.props
         return (
             <div>
-                <Question id={this.props.match.params.id} />
+                <Question id={this.props.match.params.id} detailed/>
             </div>
         )
     }

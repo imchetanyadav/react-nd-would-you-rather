@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom'
 
 class Question extends Component {
     render () {
-        const { question, author, id } = this.props
+        const { authedUser, question, author, id, detailed } = this.props
 
         if (question === null)
             return <p>This question doesnot exists</p>
@@ -12,12 +12,41 @@ class Question extends Component {
         return (
             <div>
                 <p>
-                    <Link to={`/question/${id}`}>{question.id}</Link>
+                    {detailed 
+                        ? 
+                            <span>{question.id}</span>
+                        :
+                            <Link to={`/question/${id}`}>{question.id}</Link>
+                    }
                 </p>
                 <p>author:{author.name}</p>
                 <p>time:{question.timestamp}</p>
-                <p>Option1:{question.optionOne.text}</p>
-                <p>Option2:{question.optionTwo.text}</p>
+                {
+                    question.optionOne.votes.filter(v=> v===authedUser).length || 
+                    question.optionTwo.votes.filter(v=> v===authedUser).length
+                    ?
+                        <span>
+                            Selected: 
+                            {question.optionOne.votes.filter(v=> v===authedUser).length 
+                            ? question.optionOne.text
+                            : question.optionTwo.text}
+                        </span>
+                    :
+                    <span>
+                        {detailed 
+                            ?
+                                <form>
+                                    <input type="radio" name="gender" id="optionone" value="male" /> 
+                                    <label htmlFor="optionone">{question.optionOne.text}</label>
+                                    <input type="radio" name="gender" id="optiontwo" value="female" /> 
+                                    <label htmlFor="optiontwo">{question.optionTwo.text}</label>
+                                    <button type="submit">Submit</button>
+                                </form>
+                            :
+                                null
+                        }
+                    </span>
+                }
             </div>
         )
     }
