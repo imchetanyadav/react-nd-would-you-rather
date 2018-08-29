@@ -19,7 +19,6 @@ class Dashboard extends Component {
 
         return (
             <div>
-                Dashboard
                 <AppBar position="static">
                     <Tabs value={value} onChange={this.handleChange}>
                         <Tab label="Unanswered Questions" />
