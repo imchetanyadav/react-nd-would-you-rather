@@ -3,15 +3,18 @@ import { connect } from 'react-redux'
 
 class Question extends Component {
     render () {
-        const { question } = this.props
+        const { question, author } = this.props
+
+        if (question === null)
+            return <p>This question doesnot exists</p>
         
         return (
             <div>
-                <p>id:{question.id}</p>       
-                <p>author:{question.author}</p>       
-                <p>time:{question.timestamp}</p>       
-                <p>Option1:{question.optionOne.text}</p>       
-                <p>Option2:{question.optionTwo.text}</p>       
+                <p>id:{question.id}</p>
+                <p>author:{author.name}</p>
+                <p>time:{question.timestamp}</p>
+                <p>Option1:{question.optionOne.text}</p>
+                <p>Option2:{question.optionTwo.text}</p>
             </div>
         )
     }
@@ -19,10 +22,12 @@ class Question extends Component {
 
 function mapStateToProps ({ authedUser, users, questions }, { id }) {
     const question = questions[id]
+    const author = users[question.author]
 
     return {
         authedUser,
-        question
+        question,
+        author
     }
 }
 
