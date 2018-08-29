@@ -48,18 +48,13 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps ({ questions, authedUser }) {
+function mapStateToProps ({ questions, authedUser, users }) {
+    const answeredQuestionIds = Object.keys(users[authedUser].answers)
+    const unansweredQuestionIds = Object.keys(questions).filter(q => !answeredQuestionIds.includes(q))
+
     return {
-        answeredQuestionIds: Object.keys(questions)
-            .filter(q => 
-                questions[q].optionOne.votes.some(v => v===authedUser) ||
-                questions[q].optionTwo.votes.some(v => v===authedUser) 
-            ),
-        unansweredQuestionIds: Object.keys(questions)
-            .filter(q => 
-                !(questions[q].optionOne.votes.some(v => v===authedUser) ||
-                questions[q].optionTwo.votes.some(v => v===authedUser)) 
-            )
+        answeredQuestionIds,
+        unansweredQuestionIds
     }
 }
 

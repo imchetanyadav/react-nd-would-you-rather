@@ -1,10 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import { handleAddQuestionAnswer } from '../actions/questions'
 
 class Question extends Component {
+    state={
+        selected: ''
+    }
+
+    handleOptionSelect = (value) => {
+        this.setState(()=> ({
+            selected: value
+        }))
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const { selected } = this.state
+        const { dispatch, id } = this.props
+
+        dispatch(handleAddQuestionAnswer(id, selected))
+
+    }
+
     render () {
-        const { authedUser, question, author, id, detailed } = this.props
+        const { question, author, authedUserDetails, id, detailed } = this.props
 
         if (question === null)
             return <p>This question doesnot exists</p>
@@ -21,24 +41,20 @@ class Question extends Component {
                 </p>
                 <p>author:{author.name}</p>
                 <p>time:{question.timestamp}</p>
-                {
-                    question.optionOne.votes.filter(v=> v===authedUser).length || 
-                    question.optionTwo.votes.filter(v=> v===authedUser).length
+                {authedUserDetails.answers[question.id]
                     ?
                         <span>
                             Selected: 
-                            {question.optionOne.votes.filter(v=> v===authedUser).length 
-                            ? question.optionOne.text
-                            : question.optionTwo.text}
+                            {question[authedUserDetails.answers[question.id]].text}
                         </span>
                     :
                     <span>
-                        {detailed 
+                        {detailed
                             ?
-                                <form>
-                                    <input type="radio" name="gender" id="optionone" value="male" /> 
+                                <form onSubmit={this.handleSubmit}>
+                                    <input type="radio" name="gender" id="optionone" value="optionOne" onChange={(e)=>this.handleOptionSelect(e.currentTarget.value)} /> 
                                     <label htmlFor="optionone">{question.optionOne.text}</label>
-                                    <input type="radio" name="gender" id="optiontwo" value="female" /> 
+                                    <input type="radio" name="gender" id="optiontwo" value="optionTwo" onChange={(e)=>this.handleOptionSelect(e.currentTarget.value)} /> 
                                     <label htmlFor="optiontwo">{question.optionTwo.text}</label>
                                     <button type="submit">Submit</button>
                                 </form>
@@ -55,11 +71,12 @@ class Question extends Component {
 function mapStateToProps ({ authedUser, users, questions }, { id }) {
     const question = questions[id]
     const author = users[question.author]
+    const authedUserDetails = users[authedUser]
 
     return {
-        authedUser,
         question,
-        author
+        author,
+        authedUserDetails
     }
 }
 
