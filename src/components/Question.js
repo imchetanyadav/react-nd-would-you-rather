@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography'
 import Error from './Error'
 import { handleAddQuestionAnswer } from '../actions/questions'
 
@@ -31,22 +34,31 @@ class Question extends Component {
             return <Error />
         
         return (
-            <div>
-                <p>
-                    {detailed 
-                        ? 
-                            <span>{question.id}</span>
-                        :
-                            <Link to={`/questions/${id}`}>{question.id}</Link>
-                    }
-                </p>
-                <p>author:{author.name}</p>
-                <p>time:{question.timestamp}</p>
+            <Paper className='question-container'>
+                {detailed ?
+                    <Typography variant="title">
+                        Would you rather <b>{question.optionOne.text}</b> or <b>{question.optionTwo.text}</b>
+                    </Typography>
+                :
+                    <Link to={`/questions/${id}`} style={{textDecoration: 'none'}}>
+                        <Typography variant="title">
+                            Would you rather <b>{question.optionOne.text}</b> or <b>{question.optionTwo.text}</b>
+                        </Typography>
+                    </Link>
+                }
+                <div className='question-author-details'>
+                    <Avatar alt={author.name+' profile picture'} src={author.avatarURL} className="select-avatar" />
+                    <Typography variant="subheading">
+                        {author.name} | {' '}
+                        {new Date(question.timestamp).toLocaleDateString()}
+                    </Typography>
+                </div>
                 {authedUserDetails.answers[question.id]
                     ?
                         <div>
-                            Selected: 
-                            {question[authedUserDetails.answers[question.id]].text}
+                            <Typography variant="subheading" color="primary">
+                                You selected <b>{question[authedUserDetails.answers[question.id]].text}</b>
+                            </Typography>
                             {detailed &&
                                 <div>
                                     Results:
@@ -79,7 +91,7 @@ class Question extends Component {
                         }
                     </span>
                 }
-            </div>
+            </Paper>
         )
     }
 }

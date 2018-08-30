@@ -59,3 +59,12 @@ nav .user-details{
 .select-avatar{
   margin-right: 1rem;
 }
+.question-container{
+  padding: 1rem 2rem;
+  text-decoration: none;
+}
+.question-author-details{
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
