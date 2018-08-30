@@ -15,6 +15,11 @@ export default function Navbar(props) {
                         New Question
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to='/leaderboard' exact activeClassName='active'>
+                        Leaderboard
+                    </NavLink>
+                </li>
             </ul>
             <span>
                 {props.authedUser}
