@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
+import Typography from '@material-ui/core/Typography';
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard';
 import Signin from './Signin'
@@ -19,16 +20,23 @@ class App extends Component {
       <Router>
         <div>
           <LoadingBar />
+          <div className="header">
+            <Typography variant="headline">
+              Would You Rather
+            </Typography>
+            {this.props.signedIn && 
+              <Navbar authedUser={this.props.authedUserName} authedUserAvatar={this.props.authedUserAvatar} />
+            }
+          </div>
           {
-            this.props.signedIn === true 
+            this.props.signedIn === false 
             ? <Signin /> 
             : <div>
-                  <Navbar authedUser={this.props.authedUser} />
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/questions/:id' component={QuestionDetails} />
-                  <Route path='/add' component={NewQuestion} />
-                  <Route path='/leaderboard' component={Leaderboard} />
-                </div>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/questions/:id' component={QuestionDetails} />
+                <Route path='/add' component={NewQuestion} />
+                <Route path='/leaderboard' component={Leaderboard} />
+              </div>
           }
         </div>
       </Router>
@@ -36,10 +44,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, users }) {
   return {
-    signedIn: authedUser === null,
-    authedUser
+    signedIn: authedUser !== null,
+    authedUserName: authedUser ? users[authedUser].name : '',
+    authedUserAvatar: authedUser ? users[authedUser].avatarURL : '',
   }
 }
 

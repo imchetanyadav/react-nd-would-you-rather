@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
 
@@ -9,6 +11,7 @@ class Navbar extends Component {
         dispatch(setAuthedUser(null))
     }
     render() {
+        const { authedUser, authedUserAvatar } = this.props
         return (
             <nav>
                 <ul>
@@ -28,9 +31,12 @@ class Navbar extends Component {
                         </NavLink>
                     </li>
                 </ul>
-                <span>
-                    {this.props.authedUser}
-                    <button onClick={this.handleLogout}>Logout</button>
+                <Avatar alt={authedUser+' profile picture'} src={authedUserAvatar} />
+                <span className="user-details">
+                    <span>{authedUser}</span>
+                    <Button onClick={this.handleLogout}>
+                        Logout
+                    </Button>
                 </span>
             </nav>
         )
