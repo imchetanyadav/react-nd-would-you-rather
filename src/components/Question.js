@@ -36,7 +36,7 @@ class Question extends Component {
                         ? 
                             <span>{question.id}</span>
                         :
-                            <Link to={`/question/${id}`}>{question.id}</Link>
+                            <Link to={`/questions/${id}`}>{question.id}</Link>
                     }
                 </p>
                 <p>author:{author.name}</p>

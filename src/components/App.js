@@ -18,14 +18,14 @@ class App extends Component {
       <Router>
         <div>
           <LoadingBar />
-          <Navbar />
+          <Navbar authedUser={this.props.authedUser} />
           {
             this.props.signedIn === true 
               ? <Signin /> 
               : <div>
                   <Route path='/' exact component={Dashboard} />
-                  <Route path='/question/:id' component={QuestionDetails} />
-                  <Route path='/new' component={NewQuestion} />
+                  <Route path='/questions/:id' component={QuestionDetails} />
+                  <Route path='/add' component={NewQuestion} />
                 </div>
           }
         </div>
@@ -36,7 +36,8 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    signedIn: authedUser === null
+    signedIn: authedUser === null,
+    authedUser
   }
 }
 
