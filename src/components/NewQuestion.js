@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
@@ -41,12 +44,34 @@ class NewQuestion extends Component {
             return <Redirect to='/' />
 
         return (
-            <div>
-                Would you rather?
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" defaultValue={optionOne} onChange={(e) => this.handleChange('optionOne',e)} />
-                    <input type="text" defaultValue={optionTwo} onChange={(e) => this.handleChange('optionTwo',e)} />
-                    <button type="submit">Add</button>
+            <div className="component-container">
+                <Typography variant="title" gutterBottom>
+                    Would you rather?
+                </Typography>
+                <form onSubmit={this.handleSubmit} className='form-container'>
+                    <TextField
+                        type="text"
+                        label="Option One"
+                        defaultValue={optionOne}
+                        onChange={(e) => this.handleChange('optionOne',e)}
+                        margin="normal"
+                        fullWidth
+                        autoFocus
+                    />
+                    <TextField
+                        type="text"
+                        label="Option Two"
+                        defaultValue={optionTwo}
+                        onChange={(e) => this.handleChange('optionTwo',e)}
+                        margin="normal"
+                        fullWidth
+                    />
+                    <Button variant="contained" color="primary" 
+                        type="submit"
+                        disabled={!optionOne || !optionTwo}
+                    >
+                        Add Poll
+                    </Button>
                 </form>
             </div>
         )

@@ -31,13 +31,13 @@ class Navbar extends Component {
                         </NavLink>
                     </li>
                 </ul>
-                <Avatar alt={authedUser+' profile picture'} src={authedUserAvatar} />
                 <span className="user-details">
-                    <span>{authedUser}</span>
                     <Button onClick={this.handleLogout}>
                         Logout
                     </Button>
+                    <span>{authedUser}</span>
                 </span>
+                <Avatar alt={authedUser+' profile picture'} src={authedUserAvatar} />
             </nav>
         )
     }

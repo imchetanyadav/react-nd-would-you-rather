@@ -31,11 +31,11 @@ class Signin extends Component {
         const { users } = this.props
 
         return (
-            <div className="signin-container">
+            <div className="component-container">
                 <Typography variant="subheading" gutterBottom>
                     Select a user to signin
                 </Typography>
-                <FormControl style={{width: '100%', maxWidth: '500px'}}>
+                <FormControl className='form-container'>
                     <InputLabel htmlFor="select-user">Select User</InputLabel>
                     <Select
                         value={this.state.selectedUser}
