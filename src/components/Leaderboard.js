@@ -20,10 +20,10 @@ class Leaderboard extends Component {
                 </Typography>
                 <br />
                 <Paper>
-                    <List style={{padding: '1rem 2rem 1rem 0'}}>
+                    <List style={{padding: '1rem 0'}}>
                         {leaderboardData ? 
                             leaderboardData.map(user => (
-                                    <div key={user.id}>
+                                    <div key={user.id} style={{background: user.id === authedUser ? 'yellow' : 'none'}}>
                                         <ListItem>
                                             <Avatar alt={user.name} src={user.avatarURL}></Avatar>
                                             <ListItemText primary={user.name} secondary={
@@ -32,7 +32,7 @@ class Leaderboard extends Component {
                                                     <span>Created Questions: {user.createdQuestions}</span>
                                                 </span>
                                             } />
-                                            <ListItemSecondaryAction>
+                                            <ListItemSecondaryAction style={{marginRight: '2rem'}}>
                                                 <Typography variant="title">
                                                     {user.answeredQuestions+user.createdQuestions}
                                                 </Typography>
