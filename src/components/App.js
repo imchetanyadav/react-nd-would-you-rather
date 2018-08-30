@@ -19,11 +19,11 @@ class App extends Component {
       <Router>
         <div>
           <LoadingBar />
-          <Navbar authedUser={this.props.authedUser} />
           {
             this.props.signedIn === true 
-              ? <Signin /> 
-              : <div>
+            ? <Signin /> 
+            : <div>
+                  <Navbar authedUser={this.props.authedUser} />
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/questions/:id' component={QuestionDetails} />
                   <Route path='/add' component={NewQuestion} />
