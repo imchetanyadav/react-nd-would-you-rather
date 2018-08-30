@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import Error from './Error'
 import { handleAddQuestionAnswer } from '../actions/questions'
 
 class Question extends Component {
@@ -26,8 +27,8 @@ class Question extends Component {
     render () {
         const { question, author, authedUserDetails, id, detailed } = this.props
 
-        if (question === null)
-            return <p>This question doesnot exists</p>
+        if (!question)
+            return <Error />
         
         return (
             <div>
@@ -85,7 +86,7 @@ class Question extends Component {
 
 function mapStateToProps ({ authedUser, users, questions }, { id }) {
     const question = questions[id]
-    const author = users[question.author]
+    const author = question ? users[question.author] : ''
     const authedUserDetails = users[authedUser]
 
     return {
