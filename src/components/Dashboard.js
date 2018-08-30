@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import AppBar from '@material-ui/core/AppBar';
+import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Question from './Question';
@@ -19,27 +19,23 @@ class Dashboard extends Component {
 
         return (
             <div>
-                <AppBar position="static">
-                    <Tabs value={value} onChange={this.handleChange}>
+                <Paper>
+                    <Tabs value={value} onChange={this.handleChange} centered>
                         <Tab label="Unanswered Questions" />
                         <Tab label="Answered Questions" />
                     </Tabs>
-                </AppBar>
+                </Paper>
                 {value === 0 && 
                     <div>
                         {this.props.unansweredQuestionIds.map(id => (
-                            <li key={id}>
-                                <Question id={id} />
-                            </li>
+                            <Question key={id} id={id} />
                         ))}
                     </div>
                 }
                 {value === 1 && 
                     <div>
                         {this.props.answeredQuestionIds.map(id => (
-                            <li key={id}>
-                                <Question id={id} />
-                            </li>
+                            <Question key={id} id={id} />
                         ))}
                     </div>
                 }
