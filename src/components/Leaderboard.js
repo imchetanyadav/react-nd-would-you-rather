@@ -1,31 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Typography from '@material-ui/core/Typography'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 
 class Leaderboard extends Component {
     render() {
         const { authedUser, leaderboardData } = this.props
 
         return (
-            <div>
-                Leaderboard component
-                {leaderboardData ? 
-                    leaderboardData.map(user => (
-                        <div key={user.id} style={{background: user.id===authedUser ? 'yellow' : 'none'}}>
-                            {user.name}
-                            <li>
-                                Answered Questions: {user.answeredQuestions}
-                            </li>
-                            <li>
-                                Created Questions: {user.createdQuestions}
-                            </li>
-                            <li>
-                                Total: {user.answeredQuestions+user.createdQuestions}
-                            </li>
-                            <hr />
-                        </div>
-                    ))
-                : null
-                }
+            <div className='component-container'>
+                <Typography variant="title">
+                    Leaderboard
+                </Typography>
+                <br />
+                <Paper>
+                    <List style={{padding: '1rem 2rem 1rem 0'}}>
+                        {leaderboardData ? 
+                            leaderboardData.map(user => (
+                                    <div key={user.id}>
+                                        <ListItem>
+                                            <Avatar alt={user.name} src={user.avatarURL}></Avatar>
+                                            <ListItemText primary={user.name} secondary={
+                                                <span>
+                                                    <span>Answered Questions: {user.answeredQuestions}</span> {' | '}
+                                                    <span>Created Questions: {user.createdQuestions}</span>
+                                                </span>
+                                            } />
+                                            <ListItemSecondaryAction>
+                                                <Typography variant="title">
+                                                    {user.answeredQuestions+user.createdQuestions}
+                                                </Typography>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                        <Divider inset component="li"  />
+                                    </div>                                
+                                ))
+                                : null
+                            }
+                    </List>
+                </Paper>
             </div>
         )
     }
