@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
     render() {
-        const { leaderboardData } = this.props
+        const { authedUser, leaderboardData } = this.props
 
         return (
             <div>
                 Leaderboard component
                 {leaderboardData ? 
                     leaderboardData.map(user => (
-                        <div key={user.name}>
+                        <div key={user.id} style={{background: user.id===authedUser ? 'yellow' : 'none'}}>
                             {user.name}
                             <li>
                                 Answered Questions: {user.answeredQuestions}
@@ -34,6 +34,7 @@ class Leaderboard extends Component {
 
 function mapStateToProps ({ authedUser, users, questions }) {
     const leaderboardData = Object.keys(users).map(user => ({
+        id: user,
         name: users[user].name,
         avatarURL: users[user].avatarURL,
         answeredQuestions: Object.keys(users[user].answers).length,
