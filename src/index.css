@@ -48,3 +48,10 @@ nav .user-details{
   align-items: center;
   margin-left: 1rem;
 }
+
+.signin-container{
+  padding: 2rem;
+}
+.select-avatar{
+  margin-right: 1rem;
+}
