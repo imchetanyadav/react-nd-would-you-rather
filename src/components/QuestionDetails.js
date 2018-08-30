@@ -5,7 +5,7 @@ import Question from './Question'
 class QuestionDetails extends Component {
     render() {
         return (
-            <div>
+            <div className='component-container'>
                 <Question id={this.props.match.params.id} detailed/>
             </div>
         )
