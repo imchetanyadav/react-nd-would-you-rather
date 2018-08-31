@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
@@ -8,11 +8,11 @@ import Question from './Question';
 
 class Dashboard extends Component {
     state = {
-        value: 0,
+        value: 0, // to keep track of active tab
     }
 
-    handleChange = (event, value) => {
-        this.setState({ value })
+    handleChange = (event, value) => { // update state value on tab click
+        this.setState({ value });
     }
 
     render () {
@@ -26,7 +26,7 @@ class Dashboard extends Component {
                         <Tab label="Answered Questions" />
                     </Tabs>
                 </Paper>
-                {value === 0 && 
+                {value === 0 && // Unanswered Questions tab content
                     <div>
                         <Grid container spacing={16} style={{marginTop: '1rem'}}>
                             {this.props.unansweredQuestionIds.map(id => (
@@ -37,7 +37,7 @@ class Dashboard extends Component {
                         </Grid>
                     </div>
                 }
-                {value === 1 && 
+                {value === 1 &&  // Answered Questions tab content
                     <div>
                         <Grid container spacing={16} style={{marginTop: '1rem'}}>
                             {this.props.answeredQuestionIds.map(id => (
@@ -54,8 +54,8 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps ({ questions, authedUser, users }) {
-    const answeredQuestionIds = Object.keys(users[authedUser].answers).sort((a,b)=>questions[b].timestamp-questions[a].timestamp)
-    const unansweredQuestionIds = Object.keys(questions).filter(q => !answeredQuestionIds.includes(q)).sort((a,b)=>questions[b].timestamp-questions[a].timestamp)
+    const answeredQuestionIds = Object.keys(users[authedUser].answers).sort((a,b)=>questions[b].timestamp-questions[a].timestamp);
+    const unansweredQuestionIds = Object.keys(questions).filter(q => !answeredQuestionIds.includes(q)).sort((a,b)=>questions[b].timestamp-questions[a].timestamp);
 
     return {
         answeredQuestionIds,
@@ -63,4 +63,4 @@ function mapStateToProps ({ questions, authedUser, users }) {
     }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(Dashboard);

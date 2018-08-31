@@ -1,34 +1,34 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography'
+import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { setAuthedUser } from '../actions/authedUser'
+import { setAuthedUser } from '../actions/authedUser';
 
 class Signin extends Component {
     state={
-        selectedUser: ''
+        selectedUser: '' // keep track of selected user
     }
 
-    handleUserSelect = (value) => {
+    handleUserSelect = (value) => { // update state selectedUser based user selection
         this.setState(()=> ({
             selectedUser: value
         }))
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
+    handleSubmit = (e) => { // to handle signin button click
+        e.preventDefault();
 
-        const { dispatch } = this.props
-        dispatch(setAuthedUser(this.state.selectedUser))
+        const { dispatch } = this.props;
+        dispatch(setAuthedUser(this.state.selectedUser));
     }
 
     render () {
-        const { users } = this.props
+        const { users } = this.props;
 
         return (
             <div className="component-container">
@@ -74,4 +74,4 @@ function mapStateToProps ({ users }) {
     }
   }
   
-export default connect(mapStateToProps)(Signin)
+export default connect(mapStateToProps)(Signin);

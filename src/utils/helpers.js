@@ -1,5 +1,5 @@
 function generateUID () {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
 
 export function formatQuestion ({ optionOneText, optionTwoText, author }) {
@@ -8,12 +8,12 @@ export function formatQuestion ({ optionOneText, optionTwoText, author }) {
         timestamp: Date.now(),
         author,
         optionOne: {
-        votes: [],
-        text: optionOneText,
+            votes: [],
+            text: optionOneText,
         },
         optionTwo: {
-        votes: [],
-        text: optionTwoText,
+            votes: [],
+            text: optionTwoText,
         }
     }
 }

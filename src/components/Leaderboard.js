@@ -1,6 +1,6 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import Typography from '@material-ui/core/Typography'
+import React from 'react';
+import { connect } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -45,13 +45,13 @@ const Leaderboard = props => (
 )
 
 function mapStateToProps ({ authedUser, users, questions }) {
-    const leaderboardData = Object.keys(users).map(user => ({
+    const leaderboardData = Object.keys(users).map(user => ({ // Create data for leaderboard
         id: user,
         name: users[user].name,
         avatarURL: users[user].avatarURL,
         answeredQuestions: Object.keys(users[user].answers).length,
         createdQuestions: Object.keys(questions).filter(q => questions[q].author === user).length
-    })).sort((a,b) => (b.answeredQuestions+b.createdQuestions)-(a.answeredQuestions+a.createdQuestions))
+    })).sort((a,b) => (b.answeredQuestions+b.createdQuestions)-(a.answeredQuestions+a.createdQuestions));
 
     return {
         authedUser,
@@ -59,4 +59,4 @@ function mapStateToProps ({ authedUser, users, questions }) {
     }
 }
 
-export default connect(mapStateToProps)(Leaderboard)
+export default connect(mapStateToProps)(Leaderboard);

@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import { NavLink } from 'react-router-dom'
-import { setAuthedUser } from '../actions/authedUser'
+import { NavLink } from 'react-router-dom';
+import { setAuthedUser } from '../actions/authedUser';
 
 class Navbar extends Component {
-    handleLogout = () => {
-        const { dispatch } = this.props
-        dispatch(setAuthedUser(null))
+    handleLogout = () => { // Handle logout button click
+        const { dispatch } = this.props;
+        dispatch(setAuthedUser(null));
     }
     render() {
-        const { authedUser, authedUserAvatar } = this.props
+        const { authedUser, authedUserAvatar } = this.props;
         return (
             <nav>
                 <ul>
@@ -43,4 +43,4 @@ class Navbar extends Component {
     }
 }
 
-export default connect()(Navbar)
+export default connect()(Navbar);

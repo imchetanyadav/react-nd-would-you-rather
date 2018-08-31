@@ -1,4 +1,4 @@
-import { formatQuestion } from './helpers'
+import { formatQuestion } from './helpers';
 
 let users = {
     sarahedo: {
@@ -119,13 +119,13 @@ let users = {
   
   export function _getUsers () {
     return new Promise((res, rej) => {
-      setTimeout(() => res({...users}), 1000)
+      setTimeout(() => res({...users}), 1000);
     })
   }
   
   export function _getQuestions () {
     return new Promise((res, rej) => {
-      setTimeout(() => res({...questions}), 1000)
+      setTimeout(() => res({...questions}), 1000);
     })
   }
   
@@ -148,7 +148,7 @@ let users = {
           }
         }
   
-        res(formattedQuestion)
+        res(formattedQuestion);
       }, 1000)
     })
   }
@@ -178,7 +178,7 @@ let users = {
           }
         }
   
-        res()
+        res();
       }, 500)
     })
   }

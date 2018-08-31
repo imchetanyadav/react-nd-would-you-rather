@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route} from 'react-router-dom'
-import { connect } from 'react-redux'
-import LoadingBar from 'react-redux-loading'
-import Typography from '@material-ui/core/Typography'
-import { handleInitialData } from '../actions/shared'
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+import LoadingBar from 'react-redux-loading';
+import Typography from '@material-ui/core/Typography';
+import { handleInitialData } from '../actions/shared';
 import Dashboard from './Dashboard';
-import Signin from './Signin'
+import Signin from './Signin';
 import NewQuestion from './NewQuestion';
-import QuestionDetails from './QuestionDetails'
-import Leaderboard from './Leaderboard'
-import Navbar from './Navbar'
+import QuestionDetails from './QuestionDetails';
+import Leaderboard from './Leaderboard';
+import Navbar from './Navbar';
 
 class App extends Component {
   componentDidMount () {
-    this.props.dispatch(handleInitialData())
+    this.props.dispatch(handleInitialData());
   }
   render() {
     return (
@@ -29,7 +29,7 @@ class App extends Component {
             }
           </div>
           {
-            !this.props.signedIn 
+            !this.props.signedIn // Check whether user is signed in or not
             ? <Signin /> 
             : <div>
                 <Route path='/' exact component={Dashboard} />
@@ -52,4 +52,4 @@ function mapStateToProps ({ authedUser, users }) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);

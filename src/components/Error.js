@@ -1,5 +1,5 @@
-import React from 'react'
-import Typography from '@material-ui/core/Typography'
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
 const Error = () => (
     <div>
@@ -12,4 +12,4 @@ const Error = () => (
     </div>
 )
 
-export default Error
+export default Error;
