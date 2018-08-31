@@ -1,9 +1,14 @@
 import React from 'react'
+import Typography from '@material-ui/core/Typography'
 
 const Error = () => (
     <div>
-        <h1>404</h1>
-        This page does not exists.
+        <Typography variant="display3" gutterBottom>
+            404
+        </Typography>
+        <Typography variant="subheading">
+            This page does not exists.
+        </Typography>
     </div>
 )
 
