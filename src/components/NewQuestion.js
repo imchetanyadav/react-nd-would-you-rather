@@ -30,8 +30,6 @@ class NewQuestion extends Component {
         dispatch(handleAddQuestion(optionOne, optionTwo))
 
         this.setState(() => ({
-            optionOne,
-            optionTwo,
             toHome: true
         }))
         
@@ -70,7 +68,7 @@ class NewQuestion extends Component {
                         type="submit"
                         disabled={!optionOne || !optionTwo}
                     >
-                        Add Poll
+                        Add Question
                     </Button>
                 </form>
             </div>

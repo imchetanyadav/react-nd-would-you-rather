@@ -71,7 +71,7 @@ class Question extends Component {
                                     <Typography variant="subheading">
                                         {question.optionOne.text} {' '}
                                         (Votes: {question.optionOne.votes.length} | 
-                                        Percentage: {((question.optionOne.votes.length/(question.optionOne.votes.length+question.optionTwo.votes.length))*100).toFixed(2)}%)
+                                        Percentage: {((question.optionOne.votes.length/(question.optionOne.votes.length+question.optionTwo.votes.length))*100).toFixed()}%)
                                     </Typography>
                                     <LinearProgress 
                                         variant="determinate" 
@@ -82,7 +82,7 @@ class Question extends Component {
                                     <Typography variant="subheading">
                                         {question.optionTwo.text} {' '}
                                         (Votes: {question.optionTwo.votes.length} | 
-                                        Percentage: {((question.optionTwo.votes.length/(question.optionOne.votes.length+question.optionTwo.votes.length))*100).toFixed(2)}%)
+                                        Percentage: {((question.optionTwo.votes.length/(question.optionOne.votes.length+question.optionTwo.votes.length))*100).toFixed()}%)
                                     </Typography>
                                     <LinearProgress 
                                         variant="determinate" 

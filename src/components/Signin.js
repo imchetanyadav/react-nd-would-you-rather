@@ -33,7 +33,7 @@ class Signin extends Component {
         return (
             <div className="component-container">
                 <Typography variant="subheading" gutterBottom>
-                    Select a user to signin
+                    Signin to create poll, vote and compete in leaderboard
                 </Typography>
                 <FormControl className='form-container'>
                     <InputLabel htmlFor="select-user">Select User</InputLabel>
@@ -61,7 +61,7 @@ class Signin extends Component {
                     disabled={!this.state.selectedUser}
                     style={{marginTop: '1rem'}}
                 >
-                    Login
+                    Signin
                 </Button>
             </div>
         )

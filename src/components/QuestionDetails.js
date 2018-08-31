@@ -1,15 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
 
-class QuestionDetails extends Component {
-    render() {
-        return (
-            <div className='component-container'>
-                <Question id={this.props.match.params.id} detailed/>
-            </div>
-        )
-    }
-}
+const QuestionDetails = props => (
+    <div className='component-container'>
+        <Question id={props.match.params.id} detailed/>
+    </div>
+)
 
 export default connect()(QuestionDetails)
