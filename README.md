@@ -2,9 +2,45 @@
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
-
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+## Folder Structure
+```bash
+├── README.md - This file.
+├── package.json # Package manager file.
+├── public
+│   ├── favicon.ico # React Icon,
+│   └── index.html # Base html structure
+│   └── manifest.json # Manifest file.
+└── src
+    ├── actions # Redux Actions
+    │   ├── authedUser.js # actions related to authedUser
+    │   ├── questions.js # actions related to questions
+    │   ├── shared.js # shared actions
+    │   ├── users.js # actions related to users
+    ├── components # React Components
+    │   ├── App.js # handles which component to render
+    │   ├── Dashboard.js # contains details about user's answered and unanswered questions
+    │   ├── Error.js # show 404 error when page does not exists
+    │   ├── Leaderboard.js # show user standings based on their interaction with app
+    │   ├── Navbar.js # contains link to different pages and logged in user
+    │   ├── NewQuestion.js # allow logged in user to add new question
+    │   ├── Question.js # contain details about a particular question
+    │   ├── QuestionDetails.js # complete question details
+    │   ├── Signin.js # allow user to sign in with one of the registered user
+    ├── middleware # Redux Middlewares
+    │   ├── index.js # apply thunk and logger middleware
+    │   ├── logger.js # log action and new state
+    ├── reducers # Redux Reducers
+    │   ├── authedUser.js # reducer for authedUser
+    │   ├── index.js # combine reducers
+    │   ├── questions.js # reducer for questions
+    │   ├── users.js # reducer for to users
+    ├── utils # Utility files
+    │   ├── _DATA.js # api for this project
+    │   ├── api.js # functions that connect with api
+    │   ├── helpers.js # helper function for api
+    ├── index.css # Global styles.
+    └── index.js # Used for DOM rendering only.
+```
 
 ## Data
 
@@ -94,7 +130,3 @@ Your code will talk to the database via 4 methods:
 | authedUser | String | The id of the user who answered the question|
 | qid | String | The id of the question that was answered|
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
-
-## Contributing
-
-This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
