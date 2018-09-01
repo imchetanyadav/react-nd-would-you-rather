@@ -42,6 +42,9 @@ This is the starter code for the final assessment project for Udacity's React & 
     └── index.js # Used for DOM rendering only.
 ```
 
+## Instructions
+Run yarn install to install all the dependencies for this project and yarn start to start the project server.
+
 ## Data
 
 There are two types of objects stored in our database:
